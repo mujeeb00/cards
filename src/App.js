@@ -1,25 +1,37 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import HeroSection from './HeroSection';
+import CardsSection from './CardsSection';
+import Navbar from './Navbar';
+import Footer from './Footer';
 
-function App() {
+const generateRandomCards = (count) => {
+  const cards = [];
+
+  for (let i = 0; i < count; i++) {
+    cards.push({
+      title: `Card ${i + 1}`,
+      content: `This is the content for Card ${i + 1}`,
+    });
+  }
+
+  return cards;
+};
+
+const App = () => {
+  const heroImage =  'https://shorturl.at/bfEHZ'// Replace with your hero image URL
+  const heroText = 'Welcome to our website';
+  const footerText = '© 2023. All rights reserved.';
+
+  const cards = generateRandomCards(4); // Generate 4 random cards within the main component
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Navbar title="My Website" />
+      <HeroSection image={heroImage} text={heroText} />
+      <CardsSection cards={cards} />
+      <Footer text={footerText} />
     </div>
   );
-}
+};
 
 export default App;
